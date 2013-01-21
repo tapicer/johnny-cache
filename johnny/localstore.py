@@ -19,7 +19,8 @@ class LocalStore(threading.local):
 
     # dictionary API
     def __getitem__(self, key):
-        return self.__dict__[key]
+        if key in self.__dict__:
+            return self.__dict__[key]
 
     def __setitem__(self, key, value):
         self.__dict__[key] = value

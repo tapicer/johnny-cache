@@ -223,8 +223,10 @@ class TransactionManager(object):
                 stack.insert(0, popped)
             self._store_dirty(using)
             for i in stack:
-                for k, v in self.local[i].iteritems():
-                    self.local[k] = v
+            	items = self.local[i]
+            	if items:
+                    for k, v in items.iteritems():
+                        self.local[k] = v
                 del self.local[i]
             self._restore_dirty(using)
         except IndexError:
